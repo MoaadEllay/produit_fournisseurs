@@ -7,9 +7,7 @@ pipeline {
     stages {
         stage('perf') {
   steps {
-    sh 'python bztx.py ./taurus/scenario.yml'
-    perfReport configType: 'PRT', graphType: 'PRT', ignoreFailedBuilds: true, modePerformancePerTestCase: true, modeThroughput: true, sourceDataFiles: 'results.xml'
-    dir ("taurus/results") {
+    
       gatlingArchive()
     }
   }
