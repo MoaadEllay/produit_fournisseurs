@@ -6,7 +6,8 @@ pipeline {
     }
     stages {
         stage('perf') {
-  steps {
+  steps { 
+   bat 'mvn gatling:test site'
     
       gatlingArchive()
     }
@@ -15,4 +16,3 @@ pipeline {
         
 		
     }
-
