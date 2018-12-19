@@ -142,9 +142,9 @@ public class ServletController extends HttpServlet {
                     +"</thead>"
                     +"<tbody>"
                     +"<tbody>");
-			        String id = request.getParameter( "id" ); 
+			      //  String id = request.getParameter( "id" ); 
 					try {
-						List<Produit> produits=  processRequest(2, null);
+						List<Produit> produits=  processRequest(1, "1");
 						
 						for(Produit p: produits)
 						{
@@ -180,28 +180,28 @@ public class ServletController extends HttpServlet {
 	
 		response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        String id= request.getParameter("id_produit");
-        String nom=request.getParameter("nom_produit");
-        String prix=request.getParameter("prix_produit");
-        String id_fournisseur= request.getParameter("id_fournisseur");
-        Produit p = new Produit(Integer.parseInt(id), nom , Double.parseDouble(prix), Integer.parseInt(id_fournisseur));
+        doGet(request, response);
+      String id= request.getParameter("id_produit");
+     String nom=request.getParameter("nom_produit");
+      String prix=request.getParameter("prix_produit");
+      String id_fournisseur= request.getParameter("id_fournisseur");
+      Produit p = new Produit(Integer.parseInt(id), nom , Double.parseDouble(prix), Integer.parseInt(id_fournisseur));
       
         
      
-        try {
-        
+     try {
+       
 			int result=ConnectBd.AddProduct(p);
 			
 				RequestDispatcher rd =null;
 				ServletContext sc = getServletContext(); 
-                rd = sc.getRequestDispatcher("/.");  
+                rd = sc.getRequestDispatcher("/addProduct.jsp");  
                 request.setAttribute("commande_insert",1);
                 rd.forward(request, response); 
 				   
 				
-			
 	     
-		} catch (SQLException e) {
+	} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}

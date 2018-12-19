@@ -1,16 +1,49 @@
-angular.module('sortApp', [])
-
-.controller('mainController', function($scope) {
-  $scope.sortType     = 'name'; // set the default sort type
-  $scope.sortReverse  = false;  // set the default sort order
-  $scope.searchFish   = '';     // set the default search/filter term
-  
-  // create the list of sushi rolls 
-  $scope.sushi = [
-    { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
-    { name: 'Philly', fish: 'Tuna', tastiness: 4 },
-    { name: 'Tiger', fish: 'Eel', tastiness: 7 },
-    { name: 'Rainbow', fish: 'Variety', tastiness: 6 }
-  ];
-  
+var current = null;
+document.querySelector('#email').addEventListener('focus', function(e) {
+  if (current) current.pause();
+  current = anime({
+    targets: 'path',
+    strokeDashoffset: {
+      value: 0,
+      duration: 700,
+      easing: 'easeOutQuart'
+    },
+    strokeDasharray: {
+      value: '240 1386',
+      duration: 700,
+      easing: 'easeOutQuart'
+    }
+  });
+});
+document.querySelector('#password').addEventListener('focus', function(e) {
+  if (current) current.pause();
+  current = anime({
+    targets: 'path',
+    strokeDashoffset: {
+      value: -336,
+      duration: 700,
+      easing: 'easeOutQuart'
+    },
+    strokeDasharray: {
+      value: '240 1386',
+      duration: 700,
+      easing: 'easeOutQuart'
+    }
+  });
+});
+document.querySelector('#submit').addEventListener('focus', function(e) {
+  if (current) current.pause();
+  current = anime({
+    targets: 'path',
+    strokeDashoffset: {
+      value: -730,
+      duration: 700,
+      easing: 'easeOutQuart'
+    },
+    strokeDasharray: {
+      value: '530 1386',
+      duration: 700,
+      easing: 'easeOutQuart'
+    }
+  });
 });

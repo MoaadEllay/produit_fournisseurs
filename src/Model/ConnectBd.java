@@ -51,6 +51,27 @@ public class ConnectBd {
 		return list_product;
 		
 	}
+	
+	public static User findUser(String email, String Password) throws SQLException
+	{
+		
+		User u = null;
+	      stmt = (Statement) conn.createStatement();
+	      String sql = "SELECT * FROM users where email='"+email+"' and password='"+Password+"'";
+	      ResultSet rs = stmt.executeQuery(sql);
+	      while(rs.next()){
+	    	
+	    	  u= new User(rs.getInt("id_user"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"), rs.getString("password"));
+	    	  
+	                       }
+	       rs.close();
+	      stmt.close();
+	    conn.close();
+	   
+		
+		return u;
+		
+	}
 	public static Fournisseur findFournisseurById()
 	{
 		return null;
@@ -65,7 +86,7 @@ public class ConnectBd {
 		 stmt = (Statement) conn.createStatement();
 	     String sql = "insert into produit values("+p.getId()+",'"+p.getLabel()+"',"+p.getPrix()+","+p.getId_fournisseur()+")";
 	     result=  stmt.executeUpdate(sql);
-	   
+	    
 		}
 		else
 		{
